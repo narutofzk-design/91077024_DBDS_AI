@@ -1,1 +1,19 @@
+# Development Log - 5 September 2026
+
+## Work Completed
+
+* Basic setup of the React and Vite structure for AI Movie Recommender has been completed.
+* The primary frontend files like `App.jsx`, `main.jsx`, `App.css`, and `index.css` have been created.
+* The component `MovieCard.jsx` has been created for movie recommendation card.
+* Initial UI structure has been added for the application.
+* Configuration files have been added like `package.json` and `vite.config.js`.
+* `.gitignore` file and environment variable configuration have been added so that the API keys are not checked into the repo.
+
+## Current Status
+
+The basic frontend setup is done, and the movie recommendation card component has been added.
+
+## Next Step
+
+Add the movie search feature and connect it with the recommendation logic.
 
