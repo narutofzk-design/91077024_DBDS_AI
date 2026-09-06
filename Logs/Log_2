@@ -1,1 +1,12 @@
-
+6September 2026
+Implemented state management on the AI Movie Recommender.
+Created useMovieStore.js with Zustand.
+Introduced state variables for movie recommendations, load status, error handling, and selected movie data.
+Included functions for updating and resetting recommendation states.
+Integrated the application using state management.
+Created the useRecommendations.js custom hook.
+Integrated the movie search component with the recommendation process.
+Included temporary sample movie data for the test.
+Added the functionality of loading and error handling.
+Modified App.jsx to display recommendation outputs.
+Integrated the movie search outputs with MovieCard.
