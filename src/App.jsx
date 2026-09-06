@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { useRecommendations } from "./hooks/useRecommendations";
+import useMovieStore from "./store/useMovieStore";
+import MovieCard from "./components/MovieCard";
 
 const EXAMPLE_QUERIES = [
   "Mind-bending sci-fi like Inception",
@@ -9,16 +12,18 @@ const EXAMPLE_QUERIES = [
 
 function App() {
   const [query, setQuery] = useState("");
-  const [searchText, setSearchText] = useState("");
+
+  const { fetchRecommendations } = useRecommendations();
+  const { movies, loading, error } = useMovieStore();
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    if (query.trim() === "") {
+    if (!query.trim()) {
       return;
     }
 
-    setSearchText(query);
+    fetchRecommendations(query.trim());
   };
 
   return (
@@ -30,7 +35,7 @@ function App() {
           <div className="hero-content">
 
             <div className="hero-badge">
-              AI MOVIE RECOMMENDER
+              MOVIE RECOMMENDER
             </div>
 
             <h1 className="hero-title">
@@ -54,9 +59,10 @@ function App() {
 
                 <button
                   type="submit"
+                  disabled={loading}
                   className="btn-primary"
                 >
-                  FIND MOVIES
+                  {loading ? "SEARCHING..." : "FIND MOVIES"}
                 </button>
 
               </div>
@@ -67,23 +73,53 @@ function App() {
                 <button
                   key={example}
                   className="prompt-chip"
-                  onClick={() => setQuery(example)}
+                  onClick={() => {
+                    setQuery(example);
+                    fetchRecommendations(example);
+                  }}
                 >
                   {example}
                 </button>
               ))}
             </div>
 
-            {searchText && (
-              <div className="section-header">
-                <h2 className="section-title">
-                  Searching for: {searchText}
-                </h2>
-              </div>
-            )}
-
           </div>
         </div>
+      </div>
+
+      <div className="container">
+
+        {error && (
+          <div className="error-state">
+            {error}
+          </div>
+        )}
+
+        {loading && (
+          <div className="loading-state">
+            Finding recommendations...
+          </div>
+        )}
+
+        {movies.length > 0 && !loading && (
+          <>
+            <div className="section-header">
+              <h2 className="section-title">
+                Movie Recommendations
+              </h2>
+            </div>
+
+            <div className="movie-grid">
+              {movies.map((movie) => (
+                <MovieCard
+                  key={movie.id}
+                  movie={movie}
+                />
+              ))}
+            </div>
+          </>
+        )}
+
       </div>
     </div>
   );
