@@ -1,1 +1,21 @@
+7 September 2026
+Integration of Mistral AI in the AI Movie Recommender.
+Creation of mistral.js file for the requests of movie preferences to Mistral AI API.
+Modification of useRecommendations.js file for using AI recommendations instead of temporary sample data.
+Addition of fallback.js file for providing local recommendations if the AI request is not fulfilled.
+Addition of an error handling feature for the case of failure of API request.
+App.jsx remains untouched since recommendation handling logic was implemented in useRecommendations.js.
+Integration of OMDb API to obtain real movie information.
+Creation of omdb.js file for obtaining movie data.
+Integration of Mistral AI recommendations with OMDb movies.
+Addition of movie posters, IMDb rating, genres, plot, runtime, casts, directors and awards information.
+Modification of useRecommendations.js file for using AI recommendations that contain real movie information to be displayed.
+.env.example file updated for required configurations for OMDb API.
+App.jsx remains untouched since recommendation handling logic is implemented in useRecommendations.js.
+Current Status
 
+The application is able to provide movie recommendations using Mistral AI and enhance the recommendations with real movie information provided by OMDb.
+
+The current recommendation process is:
+
+User Preference → Mistral AI → OMDb Movie Data → Recommendation Results
