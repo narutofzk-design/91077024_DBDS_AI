@@ -1,5 +1,5 @@
 import { getAIRecommendations } from "../api/mistral";
-import { enrichRecommendations } from "../api/omdb";
+import { enrichRecommendations } from "../api/tmdb";
 import useMovieStore from "../store/useMovieStore";
 
 export function useRecommendations() {
@@ -10,19 +10,14 @@ export function useRecommendations() {
     setLoading(true);
 
     try {
-      // Get movie suggestions from Mistral AI
       const aiResults = await getAIRecommendations(query);
 
-      // Get real movie information from OMDb
       const enrichedMovies = await enrichRecommendations(aiResults);
 
       setMovies(enrichedMovies);
     } catch (error) {
       console.error("Recommendation error:", error);
-
-      setError(
-        "Failed to get movie recommendations. Please try again."
-      );
+      setError("Failed to get recommendations. Please try again.");
     } finally {
       setLoading(false);
     }
