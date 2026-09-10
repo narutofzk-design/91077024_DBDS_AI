@@ -1,0 +1,27 @@
+Development Log -  10September 2026
+
+Work Done
+
+* Added TMDB API integration to the AI Movie Recommender.
+* Created `tmdb.js` file for fetching more information about movies through TMDB.
+* Integrated Mistral AI with TMDB Movies data.
+* Added movie posters, movie details, and movie trailer data.
+* Added `TrailerModal.jsx` file to display movie trailers.
+* Updated `App.jsx` with the Trailer modal.
+* Updated the Recommendation process to get TMDB data with the generated movies by AI.
+
+Current Situation
+
+Now, our app can generate movie recommendations based on Mistral AI, fetch data about movies from external movie APIs, and show movie trailers.
+
+Current Flow of the App:
+
+User Preferences
+→ Mistral AI
+→ TMDB Movie Data
+→ Movie Results
+→ Trailer Modal
+
+## Next Step
+
+Handling errors.
