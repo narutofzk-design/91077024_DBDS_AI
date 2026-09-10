@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useRecommendations } from "./hooks/useRecommendations";
 import useMovieStore from "./store/useMovieStore";
+import TrailerModal from "./components/TrailerModal";
 import MovieCard from "./components/MovieCard";
 
 const EXAMPLE_QUERIES = [
@@ -117,7 +118,7 @@ function App() {
                 />
               ))}
             </div>
-          </>
+          <TrailerModal />
         )}
 
       </div>
