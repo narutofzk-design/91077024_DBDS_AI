@@ -1,230 +1,244 @@
-# 🎬 AI Movie Recommendation System
+# AI Movie Recommender
 
-An AI-powered movie recommendation web application built with **Flask**, **Python**, **HTML/CSS/JavaScript**, and a **Large Language Model (LLM) API** (OpenAI, Claude, or Gemini). The system understands natural language and provides personalized movie recommendations based on the user's mood, preferences, genres, actors, or any custom description.
+## Project Overview
 
----
+AI Movie Recommender is a React-based web application that recommends movies based on a user's mood, interests, or movie preferences.
 
-## 📌 Project Overview
+The application uses Mistral AI to generate movie recommendations and external movie APIs such as TMDB and OMDb to retrieve movie information including posters, ratings, genres, descriptions, and trailers.
 
-The AI Movie Recommendation System uses a Large Language Model to generate intelligent movie suggestions instead of relying only on traditional recommendation algorithms. Users can type requests like:
-
-> "I want a thrilling movie with a strong female lead."
-
-or
-
-> "Suggest something funny but emotional."
-
-The LLM interprets the request and returns curated movie recommendations with titles, genres, synopses, and explanations.
-
-This project demonstrates practical AI integration into a full-stack web application.
+The goal of the project is to combine artificial intelligence with external APIs to create a simple and interactive movie recommendation system.
 
 ---
 
-## ✨ Features
+## Features
 
-- 🤖 AI-powered movie recommendations using an LLM API.
-- 💬 Natural language understanding for personalized suggestions.
-- 🎭 Genre, mood, actor, and preference-based recommendations.
-- 📱 Responsive user interface for desktop and mobile.
-- ⏳ Loading spinner while AI processes requests.
-- 🔒 Secure API key storage using `.env`.
-- ❌ Error handling for invalid input or API failures.
-- 🔄 Reset / Try Again functionality.
-
----
-
-## 🛠️ Tech Stack
-
-| Technology | Purpose |
-|------------|---------|
-| Python | Backend logic |
-| Flask | Web framework |
-| HTML5 | Frontend structure |
-| CSS3 | Styling and responsive UI |
-| JavaScript | Client-side interaction |
-| OpenAI / Claude / Gemini API | AI movie recommendations |
-| python-dotenv | Secure environment variables |
+- AI-generated movie recommendations
+- Search movies using natural language
+- Movie posters and information
+- IMDb ratings
+- Movie genres and descriptions
+- Runtime and release information
+- Movie trailer functionality
+- Loading and error states
+- Local fallback recommendations
+- Responsive user interface
+- Example search prompts
+- Centralized state management using Zustand
 
 ---
 
-## 📂 Project Structure
+## Technologies Used
+
+### Frontend
+- React
+- Vite
+- JavaScript
+- HTML
+- CSS
+
+### State Management
+- Zustand
+
+### AI
+- Mistral AI API
+
+### Movie APIs
+- TMDB API
+- OMDb API
+
+### Other Libraries
+- Axios
+
+---
+
+## Application Workflow
+
+The application follows this workflow:
+
+User Preference  
+↓  
+React User Interface  
+↓  
+Recommendation Hook  
+↓  
+Mistral AI  
+↓  
+TMDB / OMDb  
+↓  
+Movie Information  
+↓  
+Recommendation Cards  
+↓  
+Movie Trailer
+
+The user enters a movie preference such as:
+
+> Mind-bending science fiction movies like Inception
+
+Mistral AI generates movie recommendations based on the request.
+
+The recommended movie titles are then sent to TMDB or OMDb to retrieve additional information such as posters, ratings, genres, and descriptions.
+
+The final movie recommendations are then displayed to the user.
+
+---
+
+## Project Structure
 
 ```text
-AI-Movie-Recommendation-System/
-│── app.py                 # Flask backend
-│── requirements.txt        # Python dependencies
-│── .env                   # API key (not committed)
-│── static/
-│   ├── style.css
-│   ├── script.js
-│   └── images/
-│── templates/
-│   └── index.html
-│── README.md
-```
+ai-movie-recommender/
+│
+├── src/
+│   ├── api/
+│   │   ├── mistral.js
+│   │   ├── omdb.js
+│   │   ├── tmdb.js
+│   │   └── fallback.js
+│   │
+│   ├── components/
+│   │   ├── MovieCard.jsx
+│   │   └── TrailerModal.jsx
+│   │
+│   ├── hooks/
+│   │   └── useRecommendations.js
+│   │
+│   ├── store/
+│   │   └── useMovieStore.js
+│   │
+│   ├── App.jsx
+│   ├── main.jsx
+│   └── index.css
+│
+├── Logs/
+│
+├── .env.example
+├── .gitignore
+├── index.html
+├── package.json
+├── vite.config.js
+└── README.md
+nstallation
 
----
+Clone the repository:
 
-## ⚙️ How It Works
+git clone https://github.com/narutofzk-design/91077024_DBDS_AI.git
 
-1. User enters a movie preference in natural language.
-2. Flask receives the request.
-3. Prompt engineering formats the request for the LLM.
-4. The LLM generates structured movie recommendations.
-5. Flask parses the response.
-6. The frontend displays movie cards with recommendations.
+Open the project directory:
 
----
+cd 91077024_DBDS_AI
 
-## 🚀 Installation
+Install the required dependencies:
 
-### 1. Clone the Repository
+npm install
+Environment Variables
 
-```bash
-git clone https://github.com/yourusername/AI-Movie-Recommendation-System.git
-cd AI-Movie-Recommendation-System
-```
+Create a .env file in the project directory.
 
-### 2. Create a Virtual Environment
+Use .env.example as a template.
 
-```bash
-python -m venv venv
-```
+Example:
 
-Activate it:
+VITE_MISTRAL_API_KEY=your_mistral_api_key
 
-**Windows**
+VITE_OMDB_API_KEY=your_omdb_api_key
 
-```bash
-venv\Scripts\activate
-```
+VITE_TMDB_API_KEY=your_tmdb_api_key
 
-**macOS/Linux**
+VITE_TMDB_BASE_URL=https://api.themoviedb.org/3
 
-```bash
-source venv/bin/activate
-```
+VITE_TMDB_IMAGE_BASE=https://image.tmdb.org/t/p/w500
 
-### 3. Install Dependencies
+VITE_MOVIE_API_PROVIDER=tmdb
 
-```bash
-pip install -r requirements.txt
-```
+The real .env file should not be uploaded to GitHub.
 
-### 4. Create `.env`
+Running the Application
 
-```env
-OPENAI_API_KEY=your_api_key_here
-```
+Start the development server:
 
-### 5. Run the Application
+npm run dev
 
-```bash
-python app.py
-```
+Vite will display a local development URL.
 
-Open:
+Open the URL in a browser to use the application.
 
-```text
-http://127.0.0.1:5000
-```
+Example Searches
 
----
+Users can enter requests such as:
 
-## 💡 Example User Queries
+Mind-bending sci-fi movies like Inception
+Emotional drama movies
+Action movies with great storytelling
+Funny movies for a movie night
+AI Recommendation Process
 
-- "Recommend action movies like John Wick."
-- "I want romantic movies with a happy ending."
-- "Suggest mind-bending sci-fi movies."
-- "Something suspenseful but not horror."
-- "Best comedy movies to watch with friends."
+The application sends the user's movie preference to Mistral AI.
 
----
+Mistral generates a list of movies that match the user's request.
 
-## 📋 Functional Requirements
+The application then uses TMDB or OMDb to retrieve additional movie information.
 
-### Core Features
+This separates the recommendation process into two main stages:
 
-- User enters a free-text movie request.
-- Flask sends the request to an LLM API.
-- AI returns five personalized movie recommendations.
-- Recommendations include title, genre, synopsis, and reason.
-- API keys remain secure on the server.
+AI Recommendation
+        ↓
+Movie Information Enrichment
+Error Handling and Fallback System
 
-### UI/UX Features
+The project includes error handling for API failures.
 
-- Responsive layout.
-- Loading indicator.
-- Error handling.
-- Reset button.
+If the Mistral AI request fails, the application can use local fallback movie recommendations.
 
-### Future Enhancements
+The application also handles:
 
-- Movie posters using TMDB API.
-- User authentication.
-- Watchlist.
-- Rating history.
-- Search history and favorites.
+API request failures
+Missing movie information
+Empty recommendation results
+Loading states
+Invalid responses
+Rate limit errors
 
----
+This allows the application to continue working even when an external service is temporarily unavailable.
 
-## 📖 Methodology
+Development Progress
 
-```text
-User Input
-      │
-      ▼
- Flask Backend
-      │
-      ▼
- Prompt Engineering
-      │
-      ▼
-   LLM API
-      │
-      ▼
- Structured JSON Response
-      │
-      ▼
- Flask Parser
-      │
-      ▼
- Frontend Movie Cards
-```
+Development progress is documented in the Logs directory.
 
----
+The logs show the development of the application from the initial React setup to AI integration, movie API integration, trailer functionality, error handling, and final UI improvements.
 
-## 🎯 Significance
+Main development stages included:
 
-- Demonstrates real-world AI integration.
-- Personalized recommendations through natural language.
-- Combines AI, backend development, frontend design, and prompt engineering.
-- Scalable architecture for future features.
+React and Vite project setup
+Movie recommendation interface
+MovieCard component
+Zustand state management
+Recommendation workflow
+Mistral AI integration
+OMDb integration
+TMDB integration
+Movie trailer functionality
+Fallback recommendations
+Error handling
+Responsive UI improvements
+Future Improvements
 
----
+Possible future improvements include:
 
-## 🔒 Security
+Add a backend API to protect external API credentials
+User accounts and authentication
+Save favorite movies
+Recommendation history
+Movie watchlists
+More advanced AI prompts
+Filtering by genre, year, and rating
+Database integration
+Deployment to a cloud platform
+Author
 
-- API keys are stored in a `.env` file.
-- Sensitive credentials are never exposed to the frontend.
-- Backend handles all API communication securely.
+Arman Sandhu
 
----
+Bachelor's Project
+AI Movie Recommender
 
-## 📈 Future Scope
 
-- TMDB/OMDB integration.
-- User accounts.
-- Personalized watchlists.
-- Recommendation history.
-- Multi-language support.
-
----
-
-## 👨‍💻 Author
-
-**Arman Sandhu**
-
-Bachelor's in Data Science — University of Europe for Applied Sciences (UE), Germany
-
-AI Movie Recommendation System | Flask + LLM API Backend
+One important point: keep **`.env` out of GitHub**. Only upload `.env.example`. Also, because this is a Vite fron
